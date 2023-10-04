@@ -1,13 +1,5 @@
 version: v1
 plugins:
-<<<<<<< Updated upstream
-  - plugin: es
-    opt: target=ts
-    out: gen
-  - plugin: connect-es
-    opt: target=ts
-    out: gen
-=======
   - name: go
     out: grpc-ks-proto-gen/go
     opt: paths=source_relative
@@ -23,4 +15,3 @@ plugins:
     out: grpc-ks-proto-gen/go
     opt:
       - paths=source_relative
->>>>>>> Stashed changes
