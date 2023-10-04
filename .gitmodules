@@ -1,0 +1,3 @@
+[submodule "grpc-ks-proto-gen"]
+	path = grpc-ks-proto-gen
+	url = git@github.com:maetad/grpc-ks-proto-gen.git
