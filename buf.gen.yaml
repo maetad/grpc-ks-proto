@@ -1,8 +1,26 @@
 version: v1
 plugins:
+<<<<<<< Updated upstream
   - plugin: es
     opt: target=ts
     out: gen
   - plugin: connect-es
     opt: target=ts
     out: gen
+=======
+  - name: go
+    out: grpc-ks-proto-gen/go
+    opt: paths=source_relative
+  - name: go-grpc
+    out: grpc-ks-proto-gen/go
+    opt: paths=source_relative
+  - name: grpc-gateway
+    out: grpc-ks-proto-gen/go
+    opt:
+      - paths=source_relative
+      - generate_unbound_methods=true
+  - plugin: buf.build/bufbuild/validate-go
+    out: grpc-ks-proto-gen/go
+    opt:
+      - paths=source_relative
+>>>>>>> Stashed changes

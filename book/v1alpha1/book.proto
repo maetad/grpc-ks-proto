@@ -1,0 +1,118 @@
+syntax = "proto3";
+
+package grpc_knowledge_sharing.book.v1alpha1;
+
+import "google/api/field_behavior.proto";
+import "google/protobuf/empty.proto";
+import "google/protobuf/field_mask.proto";
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/maetad/grpc-ks-proto-gen/go/book/v1alpha1;book";
+
+// The BookService service defines a set of RPC methods for managing books.
+service BookService {
+  // ListBooks retrieves a list of books.
+  rpc ListBooks(ListBooksRequest) returns (ListBooksResponse) {}
+
+  // CreateBook creates a new book.
+  rpc CreateBook(CreateBookRequest) returns (CreateBookResponse) {}
+
+  // GetBook retrieves a specific book by its ID.
+  rpc GetBook(GetBookRequest) returns (GetBookResponse) {}
+
+  // UpdateBook updates an existing book.
+  rpc UpdateBook(UpdateBookRequest) returns (UpdateBookResponse) {}
+
+  // DeleteBook deletes a book by its ID.
+  rpc DeleteBook(DeleteBookRequest) returns (google.protobuf.Empty) {}
+}
+
+// ListBooksRequest is the request message for the ListBooks RPC.
+message ListBooksRequest {
+
+}
+
+// ListBooksResponse is the response message for the ListBooks RPC.
+message ListBooksResponse {
+  // Represents a list of books returned in the response.
+  repeated Book books = 1;
+
+  // A token for pagination, indicating the next page of results.
+  bytes next_page_token = 2;
+}
+
+// CreateBookRequest is the request message for the CreateBook RPC.
+message CreateBookRequest {
+  // Represents the book to be created.
+  Book book = 1;
+}
+
+// CreateBookResponse is the response message for the CreateBook RPC.
+message CreateBookResponse {
+  // Represents the newly created book.
+  Book book = 1;
+}
+
+// GetBookRequest is the request message for the GetBook RPC.
+message GetBookRequest {
+  // Book resource name. The resource name must be in the form of `books/{uuid}`.
+  // Example: "books/123e4567-e89b-12d3-a456-426655440000"
+  string name = 1;
+}
+
+// GetBookResponse is the response message for the GetBook RPC.
+message GetBookResponse {
+  // Represents the retrieved book.
+  Book book = 1;
+}
+
+// UpdateBookRequest is the request message for the UpdateBook RPC.
+message UpdateBookRequest {
+  // Represents the book to be updated.
+  Book book = 1;
+
+  // Specifies which fields of the book should be updated.
+  // Use Google's FieldMask to specify the fields to update.
+  google.protobuf.FieldMask update_mask = 2;
+}
+
+// UpdateBookResponse is the response message for the UpdateBook RPC.
+message UpdateBookResponse {
+  // Represents the updated book.
+  Book book = 1;
+}
+
+// DeleteBookRequest is the request message for the DeleteBook RPC.
+message DeleteBookRequest {
+  // Book resource name. The resource name must be in the form of `books/{uuid}`.
+  // Example: "books/123e4567-e89b-12d3-a456-426655440000"
+  string name = 1;
+}
+
+// Book represents a book entity.
+message Book {
+  // Book resource name. The resource name must be in the form of `books/{uuid}`.
+  // Example: "books/123e4567-e89b-12d3-a456-426655440000"
+  string name = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
+
+  // The title of the book.
+  string title = 2;
+
+  // The author(s) of the book.
+  string author = 3;
+
+  // The International Standard Book Number (ISBN) of the book.
+  string isbn = 4;
+
+  // The publisher of the book.
+  string publisher = 5;
+
+  // The timestamp when the book was created.
+  google.protobuf.Timestamp created_at = 6 [(google.api.field_behavior) = OUTPUT_ONLY];
+
+  // The timestamp when the book was last updated.
+  google.protobuf.Timestamp updated_at = 7 [(google.api.field_behavior) = OUTPUT_ONLY];
+
+  // The timestamp when the book was deleted (if applicable).
+  google.protobuf.Timestamp deleted_at = 8 [(google.api.field_behavior) = OUTPUT_ONLY];
+}
