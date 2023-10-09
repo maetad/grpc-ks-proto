@@ -29,7 +29,11 @@ service BookService {
 
 // ListBooksRequest is the request message for the ListBooks RPC.
 message ListBooksRequest {
+  // The maximum number of books to return per page.
+  int32 page_size = 1;
 
+  // A token for pagination, indicating the page to retrieve.
+  bytes page_token = 2;
 }
 
 // ListBooksResponse is the response message for the ListBooks RPC.
